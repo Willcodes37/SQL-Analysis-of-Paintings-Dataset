@@ -1,85 +1,10 @@
-# SQL-Analysis-of-Paintings-Dataset
+### SQL Final Portfolio Project
 
-#### **Question 1:** What museums have the highest proportion of cubist paintings? What other styles of art do these museums typically display?
+The Data
+Import the paintings database, [paintings.tar](https://drive.google.com/file/d/10axLpX_eyTwqPZFFsIuxqKCKxbWbWXde/view), to Postgres using pgAdmin. Then answer the following questions using SQL. Save the associated queries in a text file. 
+The Questions
+Create a google doc answering the following questions.
 
-```SQL
--- Query for Museums with cubist paintings 
-
-select m.name, count(*) as total
-from public.artist a
-inner join public.work w
-	on a.artist_id=w.artist_id
-inner join public.museum m
-	on w.museum_id=m.museum_id
-where a.style='Cubist'
-group by m.name
-order by total desc
-```
-
-**Result:** 
-|name|total|
-|--- |--- |
-|The Metropolitan Museum of Art|22|
-|The Museum of Modern Art|9|
-|The State Hermitage Museum|9|
-|Philadelphia Museum of Art|8|
-|Solomon R. Guggenheim Museum|7|
-|The Art Institute of Chicago|6|
-|The Tate Gallery|6|
-|Thussen-Bornemisza Museum|4|
-|National Gallery of Art|2|
-|The Prado Museum|1|
-|Museum Folkwang|1|
-|Los Angeles County Museum of Art|1|
-
-
-```SQL
--- Query for common art styles in Museums 
-
-select a.style, count(*) as total
-from public.artist a
-inner join public.work w
-	on a.artist_id=w.artist_id
-inner join public.museum m
-	on w.museum_id=m.museum_id
-group by a.style
-order by total desc
-```
-
-**Result:** 
-|style|total|
-|--- |--- |
-|Impressionist|1017|
-|Baroque|641|
-|Post-Impressionist|409|
-|Rococo|380|
-|Realist|297|
-|Romantic|213|
-|Portraitist|188|
-|Marine Art|156|
-|Neoclassical|150|
-|Expressionist|147|
-|Hudson River School|122|
-|Nabi|85|
-|Orientalist|84|
-|Cubist|76|
-|Colonial|71|
-|Northern Renaissance|59|
-|Classicist|53|
-|Avant-Garde|51|
-|Symbolist|51|
-|Pointillist|50|
-|High Renaissance|44|
-|Landscape Art|40|
-|Mannerist|33|
-|Renaissance|31|
-|Fauvist|28|
-|Surrealist|13|
-|Early Renaissance|12|
-|Naturalist|12|
-|Art Nouveau|12|
-|Folk|10|
-|Modern Art|9|
-|Futurist|7|
-|Ukiyo-e|1|
-|American West|1|
+1. What museums have the highest proportion of cubist paintings? What other styles of art do these museums typically display?
+2. Which artists have their work displayed in museums in many different countries?
+3. Create a table that shows the most frequently painted subject for each style of painting, how many paintings there were for the most frequently painted subject in that style, how many paintings there are in that style overall, and the percent of paintings in that style with the most frequent subject. Exclude cases where there is no information on the subject of the painting. Format the table and copy it into the google doc.
